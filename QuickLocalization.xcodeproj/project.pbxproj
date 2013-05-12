@@ -1,0 +1,278 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		09F65636174041010000486B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F65635174041010000486B /* AppKit.framework */; };
+		09F65638174041010000486B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F65637174041010000486B /* Foundation.framework */; };
+		09F6563E174041010000486B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09F6563C174041010000486B /* InfoPlist.strings */; };
+		09F65641174041010000486B /* QuickLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F65640174041010000486B /* QuickLocalization.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		09F65632174041010000486B /* QuickLocalization.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickLocalization.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		09F65635174041010000486B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		09F65637174041010000486B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		09F6563B174041010000486B /* QuickLocalization-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "QuickLocalization-Info.plist"; sourceTree = "<group>"; };
+		09F6563D174041010000486B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		09F6563F174041010000486B /* QuickLocalization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickLocalization.h; sourceTree = "<group>"; };
+		09F65640174041010000486B /* QuickLocalization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickLocalization.m; sourceTree = "<group>"; };
+		09F65642174041010000486B /* QuickLocalization-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QuickLocalization-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		09F6562F174041010000486B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09F65636174041010000486B /* AppKit.framework in Frameworks */,
+				09F65638174041010000486B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		09F65629174041010000486B = {
+			isa = PBXGroup;
+			children = (
+				09F65639174041010000486B /* QuickLocalization */,
+				09F65634174041010000486B /* Frameworks */,
+				09F65633174041010000486B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		09F65633174041010000486B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				09F65632174041010000486B /* QuickLocalization.xcplugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		09F65634174041010000486B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				09F65635174041010000486B /* AppKit.framework */,
+				09F65637174041010000486B /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		09F65639174041010000486B /* QuickLocalization */ = {
+			isa = PBXGroup;
+			children = (
+				09F6563F174041010000486B /* QuickLocalization.h */,
+				09F65640174041010000486B /* QuickLocalization.m */,
+				09F6563A174041010000486B /* Supporting Files */,
+			);
+			path = QuickLocalization;
+			sourceTree = "<group>";
+		};
+		09F6563A174041010000486B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				09F6563B174041010000486B /* QuickLocalization-Info.plist */,
+				09F6563C174041010000486B /* InfoPlist.strings */,
+				09F65642174041010000486B /* QuickLocalization-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		09F65631174041010000486B /* QuickLocalization */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09F65645174041010000486B /* Build configuration list for PBXNativeTarget "QuickLocalization" */;
+			buildPhases = (
+				09F6562E174041010000486B /* Sources */,
+				09F6562F174041010000486B /* Frameworks */,
+				09F65630174041010000486B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuickLocalization;
+			productName = QuickLocalization;
+			productReference = 09F65632174041010000486B /* QuickLocalization.xcplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		09F6562A174041010000486B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = nanaimostudio;
+			};
+			buildConfigurationList = 09F6562D174041010000486B /* Build configuration list for PBXProject "QuickLocalization" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 09F65629174041010000486B;
+			productRefGroup = 09F65633174041010000486B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				09F65631174041010000486B /* QuickLocalization */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		09F65630174041010000486B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09F6563E174041010000486B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		09F6562E174041010000486B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09F65641174041010000486B /* QuickLocalization.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		09F6563C174041010000486B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				09F6563D174041010000486B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		09F65643174041010000486B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		09F65644174041010000486B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		09F65646174041010000486B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "QuickLocalization/QuickLocalization-Prefix.pch";
+				INFOPLIST_FILE = "QuickLocalization/QuickLocalization-Info.plist";
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Debug;
+		};
+		09F65647174041010000486B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "QuickLocalization/QuickLocalization-Prefix.pch";
+				INFOPLIST_FILE = "QuickLocalization/QuickLocalization-Info.plist";
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		09F6562D174041010000486B /* Build configuration list for PBXProject "QuickLocalization" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09F65643174041010000486B /* Debug */,
+				09F65644174041010000486B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09F65645174041010000486B /* Build configuration list for PBXNativeTarget "QuickLocalization" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09F65646174041010000486B /* Debug */,
+				09F65647174041010000486B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 09F6562A174041010000486B /* Project object */;
+}
