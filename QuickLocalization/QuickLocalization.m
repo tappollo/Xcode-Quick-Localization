@@ -78,9 +78,9 @@ static NSString *stringRegexs = @"@\"[^\"]*\"";
                 continue;
             }
             NSString *string = [line substringWithRange:matchedRangeInLine];
-            
+//            NSLog(@"string index:%d, %@", i, string);
             NSString *outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@)", string, string];
-            addedLength = outputString.length - string.length;
+            addedLength = addedLength + outputString.length - string.length;
             if ([textView shouldChangeTextInRange:matchedRangeInDocument replacementString:outputString]) {
                 [textView.textStorage replaceCharactersInRange:matchedRangeInDocument
                                           withAttributedString:[[[NSAttributedString alloc] initWithString:outputString] autorelease]];
