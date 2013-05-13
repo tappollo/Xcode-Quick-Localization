@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09A343C6174068E600A713EE /* RCXcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A343C5174068E200A713EE /* RCXcode.m */; };
 		09F65636174041010000486B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F65635174041010000486B /* AppKit.framework */; };
 		09F65638174041010000486B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F65637174041010000486B /* Foundation.framework */; };
 		09F6563E174041010000486B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09F6563C174041010000486B /* InfoPlist.strings */; };
@@ -14,6 +15,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09A343C4174068E200A713EE /* RCXcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCXcode.h; sourceTree = "<group>"; };
+		09A343C5174068E200A713EE /* RCXcode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCXcode.m; sourceTree = "<group>"; };
 		09F65632174041010000486B /* QuickLocalization.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickLocalization.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		09F65635174041010000486B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		09F65637174041010000486B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -68,6 +71,8 @@
 			children = (
 				09F6563F174041010000486B /* QuickLocalization.h */,
 				09F65640174041010000486B /* QuickLocalization.m */,
+				09A343C4174068E200A713EE /* RCXcode.h */,
+				09A343C5174068E200A713EE /* RCXcode.m */,
 				09F6563A174041010000486B /* Supporting Files */,
 			);
 			path = QuickLocalization;
@@ -146,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09F65641174041010000486B /* QuickLocalization.m in Sources */,
+				09A343C6174068E600A713EE /* RCXcode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +277,7 @@
 				09F65647174041010000486B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
