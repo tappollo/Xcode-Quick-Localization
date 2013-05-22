@@ -237,6 +237,7 @@
 				GCC_PREFIX_HEADER = "QuickLocalization/QuickLocalization-Prefix.pch";
 				INFOPLIST_FILE = "QuickLocalization/QuickLocalization-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xcplugin;
 			};
@@ -253,6 +254,7 @@
 				GCC_PREFIX_HEADER = "QuickLocalization/QuickLocalization-Prefix.pch";
 				INFOPLIST_FILE = "QuickLocalization/QuickLocalization-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xcplugin;
 			};
