@@ -17,10 +17,10 @@ static NSString *localizeRegexs[] = {
 };
 static NSString *stringRegexs = @"@\"[^\"]*\"";
 @implementation QuickLocalization
+static id sharedPlugin = nil;
 
 
 + (void)pluginDidLoad:(NSBundle *)plugin {
-    static id sharedPlugin = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedPlugin = [[self alloc] init];
@@ -29,24 +29,16 @@ static NSString *stringRegexs = @"@\"[^\"]*\"";
 
 - (id)init {
     if (self = [super init]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(applicationDidFinishLaunching:)
-                                                     name:NSApplicationDidFinishLaunchingNotification
-                                                   object:nil];
+        NSMenuItem *viewMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
+        if (viewMenuItem) {
+            [[viewMenuItem submenu] addItem:[NSMenuItem separatorItem]];
+            NSMenuItem *sample = [[NSMenuItem alloc] initWithTitle:@"Quick Localization" action:@selector(quickLocalization) keyEquivalent:@"d"];
+            [sample setKeyEquivalentModifierMask:NSCommandKeyMask | NSAlternateKeyMask];
+            [sample setTarget:self];
+            [[viewMenuItem submenu] addItem:sample];
+        }
     }
     return self;
-}
-
-- (void)applicationDidFinishLaunching:(NSNotification *)notification {
-    NSMenuItem *viewMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
-    if (viewMenuItem) {
-        [[viewMenuItem submenu] addItem:[NSMenuItem separatorItem]];
-        NSMenuItem *sample = [[NSMenuItem alloc] initWithTitle:@"Quick Localization" action:@selector(quickLocalization) keyEquivalent:@"c"];
-        [sample setKeyEquivalentModifierMask:NSCommandKeyMask | NSShiftKeyMask];
-        [sample setTarget:self];
-        [[viewMenuItem submenu] addItem:sample];
-        [sample release];
-    }
 }
 
 // Sample Action, for menu item:
@@ -64,10 +56,10 @@ static NSString *stringRegexs = @"@\"[^\"]*\"";
         NSRange lineRange = [textView.textStorage.string lineRangeForRange:range];
         NSString *line = [textView.textStorage.string substringWithRange:lineRange];
         
-        NSRegularExpression *localizedRex = [[[NSRegularExpression alloc] initWithPattern:localizeRegexs[0] options:NSRegularExpressionCaseInsensitive error:nil] autorelease];
+        NSRegularExpression *localizedRex = [[NSRegularExpression alloc] initWithPattern:localizeRegexs[0] options:NSRegularExpressionCaseInsensitive error:nil];
         NSArray *localizedMatches = [localizedRex matchesInString:line options:0 range:NSMakeRange(0, [line length])];
         
-        NSRegularExpression *regex = [[[NSRegularExpression alloc] initWithPattern:stringRegexs options:NSRegularExpressionCaseInsensitive error:nil] autorelease];
+        NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:stringRegexs options:NSRegularExpressionCaseInsensitive error:nil];
         NSArray *matches = [regex matchesInString:line options:0 range:NSMakeRange(0, [line length])];
         NSUInteger addedLength = 0;
         for (int i = 0; i < [matches count]; i++) {
@@ -83,7 +75,7 @@ static NSString *stringRegexs = @"@\"[^\"]*\"";
             addedLength = addedLength + outputString.length - string.length;
             if ([textView shouldChangeTextInRange:matchedRangeInDocument replacementString:outputString]) {
                 [textView.textStorage replaceCharactersInRange:matchedRangeInDocument
-                                          withAttributedString:[[[NSAttributedString alloc] initWithString:outputString] autorelease]];
+                                          withAttributedString:[[NSAttributedString alloc] initWithString:outputString]];
                 [textView didChangeText];
             }
             
@@ -103,11 +95,6 @@ static NSString *stringRegexs = @"@\"[^\"]*\"";
         }
     }
     return NO;
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		09A343C6174068E600A713EE /* RCXcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A343C5174068E200A713EE /* RCXcode.m */; };
+		09EC581817E3B6E1002261C4 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 09EC581717E3B6E1002261C4 /* icon.icns */; };
 		09F65636174041010000486B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F65635174041010000486B /* AppKit.framework */; };
 		09F65638174041010000486B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F65637174041010000486B /* Foundation.framework */; };
 		09F6563E174041010000486B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09F6563C174041010000486B /* InfoPlist.strings */; };
@@ -17,6 +18,7 @@
 /* Begin PBXFileReference section */
 		09A343C4174068E200A713EE /* RCXcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCXcode.h; sourceTree = "<group>"; };
 		09A343C5174068E200A713EE /* RCXcode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCXcode.m; sourceTree = "<group>"; };
+		09EC581717E3B6E1002261C4 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		09F65632174041010000486B /* QuickLocalization.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickLocalization.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		09F65635174041010000486B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		09F65637174041010000486B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				09F6563B174041010000486B /* QuickLocalization-Info.plist */,
+				09EC581717E3B6E1002261C4 /* icon.icns */,
 				09F6563C174041010000486B /* InfoPlist.strings */,
 				09F65642174041010000486B /* QuickLocalization-Prefix.pch */,
 			);
@@ -140,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09F6563E174041010000486B /* InfoPlist.strings in Resources */,
+				09EC581817E3B6E1002261C4 /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,10 +233,11 @@
 		09F65646174041010000486B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
-				GCC_ENABLE_OBJC_GC = required;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuickLocalization/QuickLocalization-Prefix.pch";
 				INFOPLIST_FILE = "QuickLocalization/QuickLocalization-Info.plist";
@@ -246,10 +251,11 @@
 		09F65647174041010000486B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
-				GCC_ENABLE_OBJC_GC = required;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuickLocalization/QuickLocalization-Prefix.pch";
 				INFOPLIST_FILE = "QuickLocalization/QuickLocalization-Info.plist";

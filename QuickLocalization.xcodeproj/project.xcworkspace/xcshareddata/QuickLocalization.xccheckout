@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>1EE47844-8854-4E87-9C9D-9981C6C7EB5C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>QuickLocalization</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B1384B3C-CDED-4974-B523-BFBC8D94735C</key>
+		<string>ssh://github.com/nanaimostudio/Xcode-Quick-Localization.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>QuickLocalization.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B1384B3C-CDED-4974-B523-BFBC8D94735C</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/nanaimostudio/Xcode-Quick-Localization.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B1384B3C-CDED-4974-B523-BFBC8D94735C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B1384B3C-CDED-4974-B523-BFBC8D94735C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Xcode-Quick-Localization</string>
+		</dict>
+	</array>
+</dict>
+</plist>
