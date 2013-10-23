@@ -33,7 +33,7 @@ static id sharedPlugin = nil;
         if (viewMenuItem) {
             [[viewMenuItem submenu] addItem:[NSMenuItem separatorItem]];
             NSMenuItem *sample = [[NSMenuItem alloc] initWithTitle:@"Quick Localization" action:@selector(quickLocalization) keyEquivalent:@"d"];
-            [sample setKeyEquivalentModifierMask:NSCommandKeyMask | NSAlternateKeyMask];
+            [sample setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask];
             [sample setTarget:self];
             [[viewMenuItem submenu] addItem:sample];
         }
