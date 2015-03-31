@@ -71,7 +71,7 @@ static id sharedPlugin = nil;
             }
             NSString *string = [line substringWithRange:matchedRangeInLine];
 //            NSLog(@"string index:%d, %@", i, string);
-            NSString *outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@)", string, string];
+            NSString *outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, nil)", string, string];
             addedLength = addedLength + outputString.length - string.length;
             if ([textView shouldChangeTextInRange:matchedRangeInDocument replacementString:outputString]) {
                 [textView.textStorage replaceCharactersInRange:matchedRangeInDocument
