@@ -8,6 +8,7 @@
 
 #import "QuickLocalization.h"
 #import "RCXcode.h"
+
 static NSString *localizeRegexs[] = {
     @"NSLocalizedString\\s*\\(\\s*@\"(.*)\"\\s*,\\s*(.*)\\s*\\)",
     @"localizedStringForKey:\\s*@\"(.*)\"\\s*value:\\s*(.*)\\s*table:\\s*(.*)",
@@ -15,8 +16,18 @@ static NSString *localizeRegexs[] = {
     @"NSLocalizedStringFromTableInBundle\\s*\\(\\s*@\"(.*)\"\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*\\)",
     @"NSLocalizedStringWithDefaultValue\\s*\\(\\s*@\"(.*)\"\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*\\)"
 };
+
 static NSString *stringRegexs = @"@\"[^\"]*\"";
+static NSString * const QLShouldUseNilForComment = @"QLShouldUseNilForComment";
+
+@interface QuickLocalization ()
+
+@property (nonatomic, assign) BOOL shouldUseNilForComment;
+
+@end
+
 @implementation QuickLocalization
+
 static id sharedPlugin = nil;
 
 
@@ -36,6 +47,9 @@ static id sharedPlugin = nil;
             [sample setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask];
             [sample setTarget:self];
             [[viewMenuItem submenu] addItem:sample];
+            NSMenuItem *nilToggle = [[NSMenuItem alloc] initWithTitle:@"Use nil for NSLocalizedString comment" action:@selector(toggleNilOption) keyEquivalent:@""];
+            [nilToggle setTarget:self];
+            [[viewMenuItem submenu] addItem:nilToggle];
         }
     }
     return self;
@@ -71,7 +85,15 @@ static id sharedPlugin = nil;
             }
             NSString *string = [line substringWithRange:matchedRangeInLine];
 //            NSLog(@"string index:%d, %@", i, string);
-            NSString *outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@)", string, string];
+            NSString *outputString;
+            
+            if ([self shouldUseNilForComment]) {
+                outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, nil)", string];
+            }
+            else {
+                outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@)", string, string];
+            }
+            
             addedLength = addedLength + outputString.length - string.length;
             if ([textView shouldChangeTextInRange:matchedRangeInDocument replacementString:outputString]) {
                 [textView.textStorage replaceCharactersInRange:matchedRangeInDocument
@@ -95,6 +117,29 @@ static id sharedPlugin = nil;
         }
     }
     return NO;
+}
+
+- (void)toggleNilOption {
+    [self setShouldUseNilForComment:![self shouldUseNilForComment]];
+}
+
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+    if ([menuItem action] == @selector(toggleNilOption)) {
+        [menuItem setState:[self shouldUseNilForComment] ? NSOnState : NSOffState];
+    }
+    return YES;
+}
+
+#pragma mark Preferences
+
+- (BOOL)shouldUseNilForComment
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:QLShouldUseNilForComment];
+}
+
+- (void)setShouldUseNilForComment:(BOOL)shouldUseNilForComment
+{
+    [[NSUserDefaults standardUserDefaults] setBool:shouldUseNilForComment forKey:QLShouldUseNilForComment];
 }
 
 @end
