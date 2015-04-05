@@ -17,14 +17,18 @@ static NSString *localizeRegexs[] = {
     @"NSLocalizedStringWithDefaultValue\\s*\\(\\s*@\"(.*)\"\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*\\)"
 };
 
-static NSString *stringRegexs = @"@\"[^\"]*\"";
+static NSString *objcStringRegexs = @"@\"[^\"]*\"";
+static NSString *swiftStringRegexs = @"\"[^\"]*\"";
+
 static NSString * const QLShouldUseNilForComment = @"QLShouldUseNilForComment";
 static NSString * const QLShouldUseSnippetForComment = @"QLShouldUseSnippetForComment";
+static NSString * const QLShouldUseSwiftSyntax = @"QLShouldUseSwiftSyntax";
 
 @interface QuickLocalization ()
 
 @property (nonatomic, assign) BOOL shouldUseNilForComment;
 @property (nonatomic, assign) BOOL shouldUseSnippetForComment;
+@property (nonatomic, assign) BOOL shouldUseSwiftSyntax;
 
 @end
 
@@ -56,10 +60,14 @@ static id sharedPlugin = nil;
             NSMenuItem *snippetToggle = [[NSMenuItem alloc] initWithTitle:@"Use <# comments #> for NSLocalizedString comment" action:@selector(toggleSnippetOption) keyEquivalent:@""];
             [snippetToggle setTarget:self];
             
+            NSMenuItem *swiftSyntax = [[NSMenuItem alloc] initWithTitle:@"Swift Localization" action:@selector(toggleSwiftOption) keyEquivalent:@""];
+            [swiftSyntax setTarget:self];
+            
             NSMenu *groupMenu = [[NSMenu alloc] initWithTitle:@"Quick Localization"];
             [groupMenu addItem:localization];
             [groupMenu addItem:nilToggle];
             [groupMenu addItem:snippetToggle];
+            [groupMenu addItem:swiftSyntax];
             
             NSMenuItem *groupMenuItem = [[NSMenuItem alloc] initWithTitle:@"Quick Localization" action:NULL keyEquivalent:@""];
             [[viewMenuItem submenu] addItem:groupMenuItem];
@@ -87,7 +95,7 @@ static id sharedPlugin = nil;
         NSRegularExpression *localizedRex = [[NSRegularExpression alloc] initWithPattern:localizeRegexs[0] options:NSRegularExpressionCaseInsensitive error:nil];
         NSArray *localizedMatches = [localizedRex matchesInString:line options:0 range:NSMakeRange(0, [line length])];
         
-        NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:stringRegexs options:NSRegularExpressionCaseInsensitive error:nil];
+        NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:[self currentStringRegexs] options:NSRegularExpressionCaseInsensitive error:nil];
         NSArray *matches = [regex matchesInString:line options:0 range:NSMakeRange(0, [line length])];
         NSUInteger addedLength = 0;
         for (int i = 0; i < [matches count]; i++) {
@@ -100,15 +108,22 @@ static id sharedPlugin = nil;
             NSString *string = [line substringWithRange:matchedRangeInLine];
 //            NSLog(@"string index:%d, %@", i, string);
             NSString *outputString;
+            
+            NSString *swiftAddtion = self.shouldUseSwiftSyntax ? @"comment: " : @"";
 
             if ([self shouldUseNilForComment]) {
-                outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, nil)", string];
+                if (self.shouldUseSwiftSyntax) {
+                    outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, comment: \"\")", string];
+                }
+                else {
+                    outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, nil)", string];
+                }
             }
             else if ([self shouldUseSnippetForComment]) {
-                outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, <# comments #>)", string];
+                outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@<# comments #>)", string, swiftAddtion];
             }
             else {
-                outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@)", string, string];
+                outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@%@)", string, swiftAddtion ,string];
             }
 
             addedLength = addedLength + outputString.length - string.length;
@@ -125,6 +140,15 @@ static id sharedPlugin = nil;
     }
 }
 
+- (NSString *)currentStringRegexs {
+    if (self.shouldUseSwiftSyntax) {
+        return swiftStringRegexs;
+    }
+    else {
+        return objcStringRegexs;
+    }
+}
+
 - (BOOL)isRange:(NSRange)range inSkipedRanges:(NSArray *)ranges {
     for (int i = 0; i < [ranges count]; i++) {
         NSTextCheckingResult *result = [ranges objectAtIndex:i];
@@ -137,7 +161,8 @@ static id sharedPlugin = nil;
 }
 
 - (void)toggleNilOption {
-    [self setShouldUseNilForComment:![self shouldUseNilForComment]];
+    self.shouldUseNilForComment = !self.shouldUseNilForComment;
+    
     if (self.shouldUseNilForComment) {
         self.shouldUseSnippetForComment = NO;
     }
@@ -150,12 +175,19 @@ static id sharedPlugin = nil;
     }
 }
 
+- (void)toggleSwiftOption {
+    self.shouldUseSwiftSyntax = !self.shouldUseSwiftSyntax;
+}
+
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
     if ([menuItem action] == @selector(toggleNilOption)) {
         [menuItem setState:[self shouldUseNilForComment] ? NSOnState : NSOffState];
     }
     else if ([menuItem action] == @selector(toggleSnippetOption)) {
         [menuItem setState:[self shouldUseSnippetForComment] ? NSOnState : NSOffState];
+    }
+    else if ([menuItem action] == @selector(toggleSwiftOption)) {
+        [menuItem setState:[self shouldUseSwiftSyntax] ? NSOnState : NSOffState];
     }
     return YES;
 }
@@ -176,5 +208,13 @@ static id sharedPlugin = nil;
 
 - (void)setShouldUseSnippetForComment:(BOOL)shouldUseSnippetForComment {
     [[NSUserDefaults standardUserDefaults] setBool:shouldUseSnippetForComment forKey:QLShouldUseSnippetForComment];
+}
+
+- (BOOL)shouldUseSwiftSyntax {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:QLShouldUseSwiftSyntax];
+}
+
+- (void)setShouldUseSwiftSyntax:(BOOL)shouldUseSwiftSyntax {
+    [[NSUserDefaults standardUserDefaults] setBool:shouldUseSwiftSyntax forKey:QLShouldUseSwiftSyntax];
 }
 @end
