@@ -19,10 +19,12 @@ static NSString *localizeRegexs[] = {
 
 static NSString *stringRegexs = @"@\"[^\"]*\"";
 static NSString * const QLShouldUseNilForComment = @"QLShouldUseNilForComment";
+static NSString * const QLShouldUseSnippetForComment = @"QLShouldUseSnippetForComment";
 
 @interface QuickLocalization ()
 
 @property (nonatomic, assign) BOOL shouldUseNilForComment;
+@property (nonatomic, assign) BOOL shouldUseSnippetForComment;
 
 @end
 
@@ -43,13 +45,25 @@ static id sharedPlugin = nil;
         NSMenuItem *viewMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
         if (viewMenuItem) {
             [[viewMenuItem submenu] addItem:[NSMenuItem separatorItem]];
-            NSMenuItem *sample = [[NSMenuItem alloc] initWithTitle:@"Quick Localization" action:@selector(quickLocalization) keyEquivalent:@"d"];
-            [sample setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask];
-            [sample setTarget:self];
-            [[viewMenuItem submenu] addItem:sample];
+            
+            NSMenuItem *localization = [[NSMenuItem alloc] initWithTitle:@"Quick Localization" action:@selector(quickLocalization) keyEquivalent:@"d"];
+            [localization setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask];
+            [localization setTarget:self];
+            
             NSMenuItem *nilToggle = [[NSMenuItem alloc] initWithTitle:@"Use nil for NSLocalizedString comment" action:@selector(toggleNilOption) keyEquivalent:@""];
             [nilToggle setTarget:self];
-            [[viewMenuItem submenu] addItem:nilToggle];
+            
+            NSMenuItem *snippetToggle = [[NSMenuItem alloc] initWithTitle:@"Use <# comments #> for NSLocalizedString comment" action:@selector(toggleSnippetOption) keyEquivalent:@""];
+            [snippetToggle setTarget:self];
+            
+            NSMenu *groupMenu = [[NSMenu alloc] initWithTitle:@"Quick Localization"];
+            [groupMenu addItem:localization];
+            [groupMenu addItem:nilToggle];
+            [groupMenu addItem:snippetToggle];
+            
+            NSMenuItem *groupMenuItem = [[NSMenuItem alloc] initWithTitle:@"Quick Localization" action:NULL keyEquivalent:@""];
+            [[viewMenuItem submenu] addItem:groupMenuItem];
+            [[viewMenuItem submenu] setSubmenu:groupMenu forItem:groupMenuItem];
         }
     }
     return self;
@@ -90,6 +104,9 @@ static id sharedPlugin = nil;
             if ([self shouldUseNilForComment]) {
                 outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, nil)", string];
             }
+            else if ([self shouldUseSnippetForComment]) {
+                outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, <# comments #>)", string];
+            }
             else {
                 outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@)", string, string];
             }
@@ -121,25 +138,43 @@ static id sharedPlugin = nil;
 
 - (void)toggleNilOption {
     [self setShouldUseNilForComment:![self shouldUseNilForComment]];
+    if (self.shouldUseNilForComment) {
+        self.shouldUseSnippetForComment = NO;
+    }
+}
+
+- (void)toggleSnippetOption {
+    self.shouldUseSnippetForComment = !self.shouldUseSnippetForComment;
+    if (self.shouldUseSnippetForComment) {
+        self.shouldUseNilForComment = NO;
+    }
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
     if ([menuItem action] == @selector(toggleNilOption)) {
         [menuItem setState:[self shouldUseNilForComment] ? NSOnState : NSOffState];
     }
+    else if ([menuItem action] == @selector(toggleSnippetOption)) {
+        [menuItem setState:[self shouldUseSnippetForComment] ? NSOnState : NSOffState];
+    }
     return YES;
 }
 
 #pragma mark Preferences
 
-- (BOOL)shouldUseNilForComment
-{
+- (BOOL)shouldUseNilForComment {
     return [[NSUserDefaults standardUserDefaults] boolForKey:QLShouldUseNilForComment];
 }
 
-- (void)setShouldUseNilForComment:(BOOL)shouldUseNilForComment
-{
+- (void)setShouldUseNilForComment:(BOOL)shouldUseNilForComment {
     [[NSUserDefaults standardUserDefaults] setBool:shouldUseNilForComment forKey:QLShouldUseNilForComment];
 }
 
+- (BOOL)shouldUseSnippetForComment {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:QLShouldUseSnippetForComment];
+}
+
+- (void)setShouldUseSnippetForComment:(BOOL)shouldUseSnippetForComment {
+    [[NSUserDefaults standardUserDefaults] setBool:shouldUseSnippetForComment forKey:QLShouldUseSnippetForComment];
+}
 @end
