@@ -2,7 +2,7 @@ Xcode-Quick-Localization
 ========================
 
 Xcode Plugin to Convert @"content" to NSLocalizedString(@"content", @"content")
-
+Support Swift string, Convert "content" to NSLocalizedString("content", comment:"content")
 
 How To Use
 ==========
