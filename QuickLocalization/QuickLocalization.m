@@ -50,10 +50,16 @@ static id sharedPlugin = nil;
         if (viewMenuItem) {
             [[viewMenuItem submenu] addItem:[NSMenuItem separatorItem]];
             
-            NSMenuItem *localization = [[NSMenuItem alloc] initWithTitle:@"Quick Localization" action:@selector(quickLocalization) keyEquivalent:@"d"];
+			NSMenuItem *localization = [[NSMenuItem alloc] initWithTitle:@"Quick Localization" action:@selector(quickLocalization:) keyEquivalent:@"d"];
             [localization setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask];
             [localization setTarget:self];
-            
+			[localization setTag:0];
+			
+			NSMenuItem *localizationBundle = [[NSMenuItem alloc] initWithTitle:@"Quick Localization Bundle" action:@selector(quickLocalization:) keyEquivalent:@"f"];
+			[localizationBundle setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask];
+			[localizationBundle setTarget:self];
+			[localizationBundle setTag:2];
+			
             NSMenuItem *nilToggle = [[NSMenuItem alloc] initWithTitle:@"Use nil for NSLocalizedString comment" action:@selector(toggleNilOption) keyEquivalent:@""];
             [nilToggle setTarget:self];
             
@@ -65,6 +71,7 @@ static id sharedPlugin = nil;
             
             NSMenu *groupMenu = [[NSMenu alloc] initWithTitle:@"Quick Localization"];
             [groupMenu addItem:localization];
+            [groupMenu addItem:localizationBundle];
             [groupMenu addItem:nilToggle];
             [groupMenu addItem:snippetToggle];
             [groupMenu addItem:swiftSyntax];
@@ -78,7 +85,7 @@ static id sharedPlugin = nil;
 }
 
 // Sample Action, for menu item:
-- (void)quickLocalization {
+- (void)quickLocalization:(id)sender {
     IDESourceCodeDocument *document = [RCXcode currentSourceCodeDocument];
     NSTextView *textView = [RCXcode currentSourceCodeTextView];
     if (!document || !textView) {
@@ -91,7 +98,9 @@ static id sharedPlugin = nil;
         NSRange range = [[selectedRanges objectAtIndex:0] rangeValue];
         NSRange lineRange = [textView.textStorage.string lineRangeForRange:range];
         NSString *line = [textView.textStorage.string substringWithRange:lineRange];
-        
+		
+		
+		
         NSRegularExpression *localizedRex = [[NSRegularExpression alloc] initWithPattern:localizeRegexs[0] options:NSRegularExpressionCaseInsensitive error:nil];
         NSArray *localizedMatches = [localizedRex matchesInString:line options:0 range:NSMakeRange(0, [line length])];
         
@@ -110,22 +119,42 @@ static id sharedPlugin = nil;
             NSString *outputString;
             
             NSString *swiftAddtion = self.shouldUseSwiftSyntax ? @"comment: " : @"";
-
+			
+			NSString *comment = nil;
+			
             if ([self shouldUseNilForComment]) {
                 if (self.shouldUseSwiftSyntax) {
-                    outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, comment: \"\")", string];
+                    comment = @"comment: \"\"";
                 }
                 else {
-                    outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, nil)", string];
+                    comment = @"nil";
                 }
             }
             else if ([self shouldUseSnippetForComment]) {
-                outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@<# comments #>)", string, swiftAddtion];
+                comment = [NSString stringWithFormat:@"%@<# comments #>", swiftAddtion];
             }
             else {
-                outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@%@)", string, swiftAddtion ,string];
+                comment = [NSString stringWithFormat:@"%@%@", swiftAddtion, string];
             }
-
+			
+			NSUInteger LocalizeType = [sender tag];
+			switch (LocalizeType) {
+				case 0:
+					outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@)", string, comment];
+					break;
+				case 2: {
+					if (self.shouldUseSwiftSyntax) {
+						// I don't know swift
+					}
+					else {
+						outputString = [NSString stringWithFormat:@"NSLocalizedStringFromTableInBundle(%@, nil, [NSBundle bundleForClass:[self class]], %@)", string, comment];
+					}
+					break;
+				}
+				default:
+					break;
+			}
+			
             addedLength = addedLength + outputString.length - string.length;
             if ([textView shouldChangeTextInRange:matchedRangeInDocument replacementString:outputString]) {
                 [textView.textStorage replaceCharactersInRange:matchedRangeInDocument
