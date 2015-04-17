@@ -17,8 +17,8 @@ static NSString *localizeRegexs[] = {
     @"NSLocalizedStringWithDefaultValue\\s*\\(\\s*@\"(.*)\"\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*,\\s*(.*)\\s*\\)"
 };
 
-static NSString *objcStringRegexs = @"@\"[^\"]*\"";
-static NSString *swiftStringRegexs = @"\"[^\"]*\"";
+static NSString *objcStringRegexs = @"@([\"'])(?:(?=(\\\\?))\\2.)*?\\1";
+static NSString *swiftStringRegexs = @"([\"'])(?:(?=(\\\\?))\\2.)*?\\1";
 
 static NSString * const QLShouldUseNilForComment = @"QLShouldUseNilForComment";
 static NSString * const QLShouldUseSnippetForComment = @"QLShouldUseSnippetForComment";
