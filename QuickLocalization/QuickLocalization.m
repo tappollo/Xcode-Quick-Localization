@@ -46,33 +46,35 @@ static id sharedPlugin = nil;
 
 - (id)init {
     if (self = [super init]) {
-        NSMenuItem *viewMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
-        if (viewMenuItem) {
-            [[viewMenuItem submenu] addItem:[NSMenuItem separatorItem]];
-            
-            NSMenuItem *localization = [[NSMenuItem alloc] initWithTitle:@"Quick Localization" action:@selector(quickLocalization) keyEquivalent:@"d"];
-            [localization setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask];
-            [localization setTarget:self];
-            
-            NSMenuItem *nilToggle = [[NSMenuItem alloc] initWithTitle:@"Use nil for NSLocalizedString comment" action:@selector(toggleNilOption) keyEquivalent:@""];
-            [nilToggle setTarget:self];
-            
-            NSMenuItem *snippetToggle = [[NSMenuItem alloc] initWithTitle:@"Use <# comments #> for NSLocalizedString comment" action:@selector(toggleSnippetOption) keyEquivalent:@""];
-            [snippetToggle setTarget:self];
-            
-            NSMenuItem *swiftSyntax = [[NSMenuItem alloc] initWithTitle:@"Swift Localization" action:@selector(toggleSwiftOption) keyEquivalent:@""];
-            [swiftSyntax setTarget:self];
-            
-            NSMenu *groupMenu = [[NSMenu alloc] initWithTitle:@"Quick Localization"];
-            [groupMenu addItem:localization];
-            [groupMenu addItem:nilToggle];
-            [groupMenu addItem:snippetToggle];
-            [groupMenu addItem:swiftSyntax];
-            
-            NSMenuItem *groupMenuItem = [[NSMenuItem alloc] initWithTitle:@"Quick Localization" action:NULL keyEquivalent:@""];
-            [[viewMenuItem submenu] addItem:groupMenuItem];
-            [[viewMenuItem submenu] setSubmenu:groupMenu forItem:groupMenuItem];
-        }
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            NSMenuItem *viewMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
+            if (viewMenuItem) {
+                [[viewMenuItem submenu] addItem:[NSMenuItem separatorItem]];
+
+                NSMenuItem *localization = [[NSMenuItem alloc] initWithTitle:@"Quick Localization" action:@selector(quickLocalization) keyEquivalent:@"d"];
+                [localization setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask];
+                [localization setTarget:self];
+
+                NSMenuItem *nilToggle = [[NSMenuItem alloc] initWithTitle:@"Use nil for NSLocalizedString comment" action:@selector(toggleNilOption) keyEquivalent:@""];
+                [nilToggle setTarget:self];
+
+                NSMenuItem *snippetToggle = [[NSMenuItem alloc] initWithTitle:@"Use <# comments #> for NSLocalizedString comment" action:@selector(toggleSnippetOption) keyEquivalent:@""];
+                [snippetToggle setTarget:self];
+
+                NSMenuItem *swiftSyntax = [[NSMenuItem alloc] initWithTitle:@"Swift Localization" action:@selector(toggleSwiftOption) keyEquivalent:@""];
+                [swiftSyntax setTarget:self];
+
+                NSMenu *groupMenu = [[NSMenu alloc] initWithTitle:@"Quick Localization"];
+                [groupMenu addItem:localization];
+                [groupMenu addItem:nilToggle];
+                [groupMenu addItem:snippetToggle];
+                [groupMenu addItem:swiftSyntax];
+
+                NSMenuItem *groupMenuItem = [[NSMenuItem alloc] initWithTitle:@"Quick Localization" action:NULL keyEquivalent:@""];
+                [[viewMenuItem submenu] addItem:groupMenuItem];
+                [[viewMenuItem submenu] setSubmenu:groupMenu forItem:groupMenuItem];
+            }
+        }];
     }
     return self;
 }
