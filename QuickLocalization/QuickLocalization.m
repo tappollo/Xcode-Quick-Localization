@@ -29,7 +29,8 @@ static NSString * const QLShouldUseSwiftSyntax = @"QLShouldUseSwiftSyntax";
 @property (nonatomic, assign) BOOL shouldUseNilForComment;
 @property (nonatomic, assign) BOOL shouldUseSnippetForComment;
 @property (nonatomic, assign) BOOL shouldUseSwiftSyntax;
-
+@property (nonatomic, strong) IBOutlet NSTextField* tableField;
+@property (nonatomic, strong) IBOutlet NSView* pathView;
 @end
 
 @implementation QuickLocalization
@@ -40,11 +41,11 @@ static id sharedPlugin = nil;
 + (void)pluginDidLoad:(NSBundle *)plugin {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedPlugin = [[self alloc] init];
+        sharedPlugin = [[self alloc] initWithBundle:plugin];
     });
 }
 
-- (id)init {
+- (id)initWithBundle:(NSBundle *)plugin {
     if (self = [super init]) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             NSMenuItem *viewMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
@@ -63,12 +64,25 @@ static id sharedPlugin = nil;
 
                 NSMenuItem *swiftSyntax = [[NSMenuItem alloc] initWithTitle:@"Swift Localization" action:@selector(toggleSwiftOption) keyEquivalent:@""];
                 [swiftSyntax setTarget:self];
+                
+                
+                [plugin loadNibNamed:@"TableNameView" owner:self topLevelObjects:nil];
+                NSMenuItem *customTableName = [[NSMenuItem alloc] initWithTitle:@"TableName" action:@selector(tableName) keyEquivalent:@""];
+                [customTableName setTarget:self];
+                customTableName.view = self.pathView;
+                
 
                 NSMenu *groupMenu = [[NSMenu alloc] initWithTitle:@"Quick Localization"];
+                
                 [groupMenu addItem:localization];
                 [groupMenu addItem:nilToggle];
                 [groupMenu addItem:snippetToggle];
                 [groupMenu addItem:swiftSyntax];
+                [groupMenu addItem:customTableName];
+                
+                
+                
+                
 
                 NSMenuItem *groupMenuItem = [[NSMenuItem alloc] initWithTitle:@"Quick Localization" action:NULL keyEquivalent:@""];
                 [[viewMenuItem submenu] addItem:groupMenuItem];
@@ -112,20 +126,38 @@ static id sharedPlugin = nil;
             NSString *outputString;
             
             NSString *swiftAddtion = self.shouldUseSwiftSyntax ? @"comment: " : @"";
-
+            NSString *swiftTableAddtion = self.shouldUseSwiftSyntax ? @"tbl: " : @"";
             if ([self shouldUseNilForComment]) {
                 if (self.shouldUseSwiftSyntax) {
-                    outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, comment: \"\")", string];
+                    if (self.tableField.stringValue.length > 0) {
+                        outputString = [NSString stringWithFormat:@"NSLocalizedStringFromTable(%@, tbl: %@, comment: \"\")", string,self.tableField.stringValue];
+                    }else{
+                        outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, comment: \"\")", string];
+                    }
                 }
                 else {
-                    outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, nil)", string];
+                    if (self.tableField.stringValue.length > 0) {
+                        outputString = [NSString stringWithFormat:@"NSLocalizedStringFromTable(%@, %@, nil)", string,self.tableField.stringValue];
+                    }else{
+                        outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, nil)", string];
+                    }
                 }
             }
             else if ([self shouldUseSnippetForComment]) {
-                outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@<# comments #>)", string, swiftAddtion];
+                
+                if (self.tableField.stringValue.length > 0) {
+                    outputString = [NSString stringWithFormat:@"NSLocalizedStringFromTable(%@, %@%@, %@<# comments #>)", string,swiftTableAddtion,self.tableField.stringValue, swiftAddtion];
+                }else{
+                    outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@<# comments #>)", string, swiftAddtion];
+                }
             }
             else {
-                outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@%@)", string, swiftAddtion ,string];
+                if (self.tableField.stringValue.length > 0) {
+                    outputString = [NSString stringWithFormat:@"NSLocalizedStringFromTable(%@, %@%@, %@%@)", string, swiftTableAddtion,self.tableField.stringValue, swiftAddtion ,string];
+                }else{
+                    outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@%@)", string, swiftAddtion ,string];
+                }
+                
             }
 
             addedLength = addedLength + outputString.length - string.length;
