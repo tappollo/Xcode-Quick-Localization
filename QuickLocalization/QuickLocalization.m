@@ -125,41 +125,36 @@ static id sharedPlugin = nil;
 //            NSLog(@"string index:%d, %@", i, string);
             NSString *outputString;
             
-            NSString *swiftAddtion = self.shouldUseSwiftSyntax ? @"comment: " : @"";
-            NSString *swiftTableAddtion = self.shouldUseSwiftSyntax ? @"tbl: " : @"";
-            if ([self shouldUseNilForComment]) {
-                if (self.shouldUseSwiftSyntax) {
-                    if (self.tableField.stringValue.length > 0) {
-                        outputString = [NSString stringWithFormat:@"NSLocalizedStringFromTable(%@, tbl: %@, comment: \"\")", string,self.tableField.stringValue];
-                    }else{
-                        outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, comment: \"\")", string];
-                    }
-                }
-                else {
-                    if (self.tableField.stringValue.length > 0) {
-                        outputString = [NSString stringWithFormat:@"NSLocalizedStringFromTable(%@, %@, nil)", string,self.tableField.stringValue];
-                    }else{
-                        outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, nil)", string];
-                    }
-                }
-            }
-            else if ([self shouldUseSnippetForComment]) {
-                
-                if (self.tableField.stringValue.length > 0) {
-                    outputString = [NSString stringWithFormat:@"NSLocalizedStringFromTable(%@, %@%@, %@<# comments #>)", string,swiftTableAddtion,self.tableField.stringValue, swiftAddtion];
+            NSString *comment;
+            if (self.shouldUseSwiftSyntax) {
+                if ([self shouldUseNilForComment]) {
+                    comment = @"\"\"";
+                }else if ([self shouldUseSnippetForComment]){
+                    comment = @"<#comments#>";
                 }else{
-                    outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@<# comments #>)", string, swiftAddtion];
+                    comment = string;
                 }
-            }
-            else {
                 if (self.tableField.stringValue.length > 0) {
-                    outputString = [NSString stringWithFormat:@"NSLocalizedStringFromTable(%@, %@%@, %@%@)", string, swiftTableAddtion,self.tableField.stringValue, swiftAddtion ,string];
+                    outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, tableName: %@, comment: %@)", string,self.tableField.stringValue,comment];
                 }else{
-                    outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@%@)", string, swiftAddtion ,string];
+                    outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, comment: %@)", string,comment];
                 }
                 
+            }else{
+                if ([self shouldUseNilForComment]) {
+                    comment = @"nil";
+                }else if ([self shouldUseSnippetForComment]){
+                    comment = @"<#comments#>";
+                }else{
+                    comment = string;
+                }
+                if (self.tableField.stringValue.length > 0) {
+                    outputString = [NSString stringWithFormat:@"NSLocalizedStringFromTable(%@, %@, %@)", string,self.tableField.stringValue,comment];
+                }else{
+                    outputString = [NSString stringWithFormat:@"NSLocalizedString(%@, %@)", string,comment];
+                }
             }
-
+            
             addedLength = addedLength + outputString.length - string.length;
             if ([textView shouldChangeTextInRange:matchedRangeInDocument replacementString:outputString]) {
                 [textView.textStorage replaceCharactersInRange:matchedRangeInDocument
