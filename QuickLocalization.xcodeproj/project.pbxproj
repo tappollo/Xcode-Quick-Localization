@@ -13,6 +13,7 @@
 		09F65638174041010000486B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F65637174041010000486B /* Foundation.framework */; };
 		09F6563E174041010000486B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09F6563C174041010000486B /* InfoPlist.strings */; };
 		09F65641174041010000486B /* QuickLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F65640174041010000486B /* QuickLocalization.m */; };
+		72169A901BC65DC6004B1AAB /* TableNameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72169A8F1BC65DC6004B1AAB /* TableNameView.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		09F6563F174041010000486B /* QuickLocalization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickLocalization.h; sourceTree = "<group>"; };
 		09F65640174041010000486B /* QuickLocalization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickLocalization.m; sourceTree = "<group>"; };
 		09F65642174041010000486B /* QuickLocalization-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QuickLocalization-Prefix.pch"; sourceTree = "<group>"; };
+		72169A8F1BC65DC6004B1AAB /* TableNameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableNameView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 		09F65639174041010000486B /* QuickLocalization */ = {
 			isa = PBXGroup;
 			children = (
+				72169A8F1BC65DC6004B1AAB /* TableNameView.xib */,
 				09F6563F174041010000486B /* QuickLocalization.h */,
 				09F65640174041010000486B /* QuickLocalization.m */,
 				09A343C4174068E200A713EE /* RCXcode.h */,
@@ -142,6 +145,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72169A901BC65DC6004B1AAB /* TableNameView.xib in Resources */,
 				09F6563E174041010000486B /* InfoPlist.strings in Resources */,
 				09EC581817E3B6E1002261C4 /* icon.icns in Resources */,
 			);
