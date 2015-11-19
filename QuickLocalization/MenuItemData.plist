@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>rootMenuTitle</key>
+	<string>Edit</string>
+	<key>pluginTitle</key>
+	<string>Quick Localization</string>
+	<key>subMenuItems</key>
+	<array>
+		<dict>
+			<key>title</key>
+			<string>Quick Localization</string>
+			<key>selector</key>
+			<string>quickLocalization:</string>
+			<key>shortcut</key>
+			<dict>
+				<key>keyMask</key>
+				<array>
+					<string>ctrl</string>
+				</array>
+				<key>keyEquivalent</key>
+				<string>a</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Setting</string>
+			<key>selector</key>
+			<string>showSettingWindow</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Plugin version %@</string>
+			<key>selector</key>
+			<string></string>
+		</dict>
+	</array>
+</dict>
+</plist>

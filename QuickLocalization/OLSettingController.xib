@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="OLSettingController">
+            <connections>
+                <outlet property="bunldeTextField" destination="w0s-KN-5HC" id="j9M-4o-AEB"/>
+                <outlet property="comboBox" destination="UqZ-1F-wC0" id="gNt-Mu-ZbN"/>
+                <outlet property="commentAsKeyButton" destination="UD6-Va-jOJ" id="wye-4f-NMx"/>
+                <outlet property="commentSameAsKeyCheckButton" destination="UD6-Va-jOJ" id="qc6-Rf-N8s"/>
+                <outlet property="commentTextField" destination="4be-14-cLw" id="CVS-cB-pvH"/>
+                <outlet property="previewLabel" destination="HId-I8-xsX" id="Dt8-we-ze4"/>
+                <outlet property="swiftCheckButton" destination="D9Q-Un-OAv" id="7X3-b0-hCf"/>
+                <outlet property="swiftLocalizationPreviewButton" destination="D9Q-Un-OAv" id="Yu7-0E-zvJ"/>
+                <outlet property="tableNameTextField" destination="pTz-WM-a7f" id="v70-tW-mke"/>
+                <outlet property="valueTextField" destination="UbR-ET-wcK" id="dc0-fh-ELx"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Xcode Quick Localization Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="588" height="312"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="3440" height="1417"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="588" height="312"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4be-14-cLw">
+                        <rect key="frame" x="105" y="277" width="105" height="22"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="&lt;# comment #&gt;" drawsBackground="YES" id="jgI-yo-s4i">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="commentDidChange:" target="-2" id="aSs-Dr-dKQ"/>
+                        </connections>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uQF-yY-Cl8">
+                        <rect key="frame" x="21" y="281" width="66" height="17"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="comment:" id="Fe3-3o-hcT">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pTz-WM-a7f">
+                        <rect key="frame" x="105" y="247" width="105" height="22"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="nil" drawsBackground="YES" id="uPN-08-F50">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="onTableNameChanged:" target="-2" id="DN4-id-Bmo"/>
+                        </connections>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AxW-iO-sMY">
+                        <rect key="frame" x="21" y="251" width="75" height="17"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="tableName:" id="q7z-1m-CNi">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UD6-Va-jOJ">
+                        <rect key="frame" x="222" y="280" width="111" height="17"/>
+                        <animations/>
+                        <buttonCell key="cell" type="check" title="Same as Key?" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="cg9-nb-qHQ">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="onCommentAsKayButton:" target="-2" id="px9-bv-K5S"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D9Q-Un-OAv">
+                        <rect key="frame" x="21" y="161" width="60" height="18"/>
+                        <animations/>
+                        <buttonCell key="cell" type="check" title="Swift?" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Cnw-gx-DEo">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="onSwiftLocalizationPreviewChanged:" target="-2" id="Sdr-iP-jop"/>
+                        </connections>
+                    </button>
+                    <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UqZ-1F-wC0">
+                        <rect key="frame" x="23" y="124" width="548" height="26"/>
+                        <animations/>
+                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" numberOfVisibleItems="4" id="Lfv-2P-hwd">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <objectValues>
+                                <string>NSLocalizedString(%@, %@)</string>
+                                <string>NSLocalizedStringFromTableInBundle(%@, %@, %@, %@)</string>
+                                <string>NSLocalizedString(%@, comment: %@)</string>
+                                <string>NSLocalizedString(%@, tableName: %@, bundle: %@, value: %@, comment: %@)</string>
+                            </objectValues>
+                        </comboBoxCell>
+                        <connections>
+                            <action selector="onComboBoxChanged:" target="-2" id="96K-Gl-o26"/>
+                        </connections>
+                    </comboBox>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UbR-ET-wcK">
+                        <rect key="frame" x="105" y="191" width="105" height="22"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="&lt;# value #&gt;" drawsBackground="YES" id="pNa-Hi-MsB">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="onValueTextField:" target="-2" id="xCt-gy-sBF"/>
+                        </connections>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NMp-3M-z2d">
+                        <rect key="frame" x="21" y="195" width="40" height="17"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="value:" id="QdF-5G-Ouu">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w0s-KN-5HC">
+                        <rect key="frame" x="105" y="217" width="105" height="22"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="nil" drawsBackground="YES" id="kkj-EX-CmJ">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="onBunldeNameChanged:" target="-2" id="Eh5-it-x5x"/>
+                        </connections>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6wB-B8-UK0">
+                        <rect key="frame" x="21" y="221" width="50" height="17"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="bundle:" id="3F0-yl-Ms0">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wkS-OA-33u">
+                        <rect key="frame" x="21" y="103" width="55" height="17"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="preview:" id="srm-6Q-pMN">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HId-I8-xsX">
+                        <rect key="frame" x="20" y="78" width="549" height="17"/>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="4xj-Fm-hoi">
+                            <font key="font" metaFont="system" size="10"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+                <animations/>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="423" y="679"/>
+        </window>
+    </objects>
+</document>

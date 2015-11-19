@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0966970B1B5A20C200D29654 /* AMMenuGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0966970A1B5A20C200D29654 /* AMMenuGenerator.m */; };
+		0966970D1B5A20C900D29654 /* MenuItemData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0966970C1B5A20C900D29654 /* MenuItemData.plist */; };
+		096697101B5A214400D29654 /* AMConstString.m in Sources */ = {isa = PBXBuildFile; fileRef = 0966970F1B5A214400D29654 /* AMConstString.m */; };
+		099474BA1B5A1F3000E39E3C /* OLSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 099474B81B5A1F3000E39E3C /* OLSettingController.m */; };
+		099474BB1B5A1F3000E39E3C /* OLSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 099474B91B5A1F3000E39E3C /* OLSettingController.xib */; };
 		09A343C6174068E600A713EE /* RCXcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A343C5174068E200A713EE /* RCXcode.m */; };
 		09EC581817E3B6E1002261C4 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 09EC581717E3B6E1002261C4 /* icon.icns */; };
 		09F65636174041010000486B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F65635174041010000486B /* AppKit.framework */; };
@@ -16,6 +21,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		096697091B5A20C200D29654 /* AMMenuGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMenuGenerator.h; sourceTree = "<group>"; };
+		0966970A1B5A20C200D29654 /* AMMenuGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMenuGenerator.m; sourceTree = "<group>"; };
+		0966970C1B5A20C900D29654 /* MenuItemData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuItemData.plist; sourceTree = "<group>"; };
+		0966970E1B5A214400D29654 /* AMConstString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMConstString.h; sourceTree = "<group>"; };
+		0966970F1B5A214400D29654 /* AMConstString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMConstString.m; sourceTree = "<group>"; };
+		099474B71B5A1F3000E39E3C /* OLSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLSettingController.h; sourceTree = "<group>"; };
+		099474B81B5A1F3000E39E3C /* OLSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLSettingController.m; sourceTree = "<group>"; };
+		099474B91B5A1F3000E39E3C /* OLSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OLSettingController.xib; sourceTree = "<group>"; };
 		09A343C4174068E200A713EE /* RCXcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCXcode.h; sourceTree = "<group>"; };
 		09A343C5174068E200A713EE /* RCXcode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCXcode.m; sourceTree = "<group>"; };
 		09EC581717E3B6E1002261C4 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
@@ -75,7 +88,15 @@
 				09F65640174041010000486B /* QuickLocalization.m */,
 				09A343C4174068E200A713EE /* RCXcode.h */,
 				09A343C5174068E200A713EE /* RCXcode.m */,
+				0966970C1B5A20C900D29654 /* MenuItemData.plist */,
+				0966970E1B5A214400D29654 /* AMConstString.h */,
+				0966970F1B5A214400D29654 /* AMConstString.m */,
+				096697091B5A20C200D29654 /* AMMenuGenerator.h */,
+				0966970A1B5A20C200D29654 /* AMMenuGenerator.m */,
 				09F6563A174041010000486B /* Supporting Files */,
+				099474B71B5A1F3000E39E3C /* OLSettingController.h */,
+				099474B81B5A1F3000E39E3C /* OLSettingController.m */,
+				099474B91B5A1F3000E39E3C /* OLSettingController.xib */,
 			);
 			path = QuickLocalization;
 			sourceTree = "<group>";
@@ -142,7 +163,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				099474BB1B5A1F3000E39E3C /* OLSettingController.xib in Resources */,
 				09F6563E174041010000486B /* InfoPlist.strings in Resources */,
+				0966970D1B5A20C900D29654 /* MenuItemData.plist in Resources */,
 				09EC581817E3B6E1002261C4 /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,6 +178,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				09F65641174041010000486B /* QuickLocalization.m in Sources */,
+				096697101B5A214400D29654 /* AMConstString.m in Sources */,
+				099474BA1B5A1F3000E39E3C /* OLSettingController.m in Sources */,
+				0966970B1B5A20C200D29654 /* AMMenuGenerator.m in Sources */,
 				09A343C6174068E600A713EE /* RCXcode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
