@@ -138,9 +138,6 @@ static id sharedPlugin = nil;
             [textView didChangeText];
         }
         
-        //            [textView replaceCharactersInRange:matchedRangeInDocument withString:outputString];
-        //            NSAlert *alert = [NSAlert alertWithMessageText:outputString defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
-        //            [alert runModal];
     }
     
     if (matches.count) {

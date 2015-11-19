@@ -25,14 +25,14 @@
         <window title="Xcode Quick Localization Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="588" height="312"/>
+            <rect key="contentRect" x="196" y="240" width="588" height="270"/>
             <rect key="screenRect" x="0.0" y="0.0" width="3440" height="1417"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="588" height="312"/>
+                <rect key="frame" x="0.0" y="0.0" width="588" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4be-14-cLw">
-                        <rect key="frame" x="105" y="277" width="105" height="22"/>
+                        <rect key="frame" x="105" y="235" width="105" height="22"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="&lt;# comment #&gt;" drawsBackground="YES" id="jgI-yo-s4i">
                             <font key="font" metaFont="system"/>
@@ -44,7 +44,7 @@
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uQF-yY-Cl8">
-                        <rect key="frame" x="21" y="281" width="66" height="17"/>
+                        <rect key="frame" x="21" y="239" width="66" height="17"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="comment:" id="Fe3-3o-hcT">
                             <font key="font" metaFont="system"/>
@@ -53,7 +53,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pTz-WM-a7f">
-                        <rect key="frame" x="105" y="247" width="105" height="22"/>
+                        <rect key="frame" x="105" y="205" width="105" height="22"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="nil" drawsBackground="YES" id="uPN-08-F50">
                             <font key="font" metaFont="system"/>
@@ -65,7 +65,7 @@
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AxW-iO-sMY">
-                        <rect key="frame" x="21" y="251" width="75" height="17"/>
+                        <rect key="frame" x="21" y="209" width="75" height="17"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="tableName:" id="q7z-1m-CNi">
                             <font key="font" metaFont="system"/>
@@ -74,7 +74,7 @@
                         </textFieldCell>
                     </textField>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UD6-Va-jOJ">
-                        <rect key="frame" x="222" y="280" width="111" height="17"/>
+                        <rect key="frame" x="222" y="238" width="111" height="17"/>
                         <animations/>
                         <buttonCell key="cell" type="check" title="Same as Key?" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="cg9-nb-qHQ">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -85,7 +85,7 @@
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D9Q-Un-OAv">
-                        <rect key="frame" x="21" y="161" width="60" height="18"/>
+                        <rect key="frame" x="21" y="119" width="60" height="18"/>
                         <animations/>
                         <buttonCell key="cell" type="check" title="Swift?" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Cnw-gx-DEo">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -96,7 +96,7 @@
                         </connections>
                     </button>
                     <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UqZ-1F-wC0">
-                        <rect key="frame" x="23" y="124" width="548" height="26"/>
+                        <rect key="frame" x="23" y="82" width="548" height="26"/>
                         <animations/>
                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" numberOfVisibleItems="4" id="Lfv-2P-hwd">
                             <font key="font" metaFont="system"/>
@@ -114,7 +114,7 @@
                         </connections>
                     </comboBox>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UbR-ET-wcK">
-                        <rect key="frame" x="105" y="191" width="105" height="22"/>
+                        <rect key="frame" x="105" y="149" width="105" height="22"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="&lt;# value #&gt;" drawsBackground="YES" id="pNa-Hi-MsB">
                             <font key="font" metaFont="system"/>
@@ -126,7 +126,7 @@
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NMp-3M-z2d">
-                        <rect key="frame" x="21" y="195" width="40" height="17"/>
+                        <rect key="frame" x="21" y="153" width="40" height="17"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="value:" id="QdF-5G-Ouu">
                             <font key="font" metaFont="system"/>
@@ -135,7 +135,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w0s-KN-5HC">
-                        <rect key="frame" x="105" y="217" width="105" height="22"/>
+                        <rect key="frame" x="105" y="175" width="105" height="22"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="nil" drawsBackground="YES" id="kkj-EX-CmJ">
                             <font key="font" metaFont="system"/>
@@ -147,7 +147,7 @@
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6wB-B8-UK0">
-                        <rect key="frame" x="21" y="221" width="50" height="17"/>
+                        <rect key="frame" x="21" y="179" width="50" height="17"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="bundle:" id="3F0-yl-Ms0">
                             <font key="font" metaFont="system"/>
@@ -156,7 +156,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wkS-OA-33u">
-                        <rect key="frame" x="21" y="103" width="55" height="17"/>
+                        <rect key="frame" x="21" y="61" width="55" height="17"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="preview:" id="srm-6Q-pMN">
                             <font key="font" metaFont="system"/>
@@ -165,7 +165,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HId-I8-xsX">
-                        <rect key="frame" x="20" y="78" width="549" height="17"/>
+                        <rect key="frame" x="20" y="36" width="549" height="17"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="4xj-Fm-hoi">
                             <font key="font" metaFont="system" size="10"/>
@@ -179,7 +179,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="423" y="679"/>
+            <point key="canvasLocation" x="423" y="658"/>
         </window>
     </objects>
 </document>
