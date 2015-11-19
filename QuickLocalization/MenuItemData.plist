@@ -17,10 +17,11 @@
 			<dict>
 				<key>keyMask</key>
 				<array>
-					<string>ctrl</string>
+					<string>shift</string>
+					<string>alt</string>
 				</array>
 				<key>keyEquivalent</key>
-				<string>a</string>
+				<string>d</string>
 			</dict>
 		</dict>
 		<dict>
