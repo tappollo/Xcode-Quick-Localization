@@ -44,20 +44,46 @@ NSUInteger QL_CountOccurentOfStringWithSubString(NSString *str, NSString *subStr
     [super windowDidLoad];
     [self.comboBox selectItemAtIndex:0];
     [self updatePreviewText];
-}
-
-- (IBAction)onSaveButton:(id)sender {
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{
+                                                              kQLFormatStringCommentValueKey: @"<# comment #>",
+                                                              kQLFormatStringTableNameValueKey: @"nil",
+                                                              kQLFormatStringBundleValueKey: @"nil",
+                                                              kQLFormatStringValueValueKey: @"<# value #>",
+                                                              kQLFormatStringCommentSameKey: @YES,
+                                                              kQLFormatStringSwiftSyntax: @NO,
+                                                              }];
+    
+    self.commentTextField.stringValue = [[NSUserDefaults standardUserDefaults] objectForKey:kQLFormatStringCommentValueKey];
+    self.tableNameTextField.stringValue = [[NSUserDefaults standardUserDefaults] objectForKey:kQLFormatStringTableNameValueKey];
+    self.bunldeTextField.stringValue = [[NSUserDefaults standardUserDefaults] objectForKey:kQLFormatStringBundleValueKey];
+    self.valueTextField.stringValue = [[NSUserDefaults standardUserDefaults] objectForKey:kQLFormatStringValueValueKey];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kQLFormatStringSwiftSyntax]) {
+        self.swiftLocalizationPreviewButton.state = NSOnState;
+    }
+    else {
+        self.swiftLocalizationPreviewButton.state = NSOffState;
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kQLFormatStringCommentSameKey]) {
+        self.commentSameAsKeyCheckButton.state = NSOnState;
+    }
+    else {
+        self.commentSameAsKeyCheckButton.state = NSOffState;
+    }
 }
 
 - (IBAction)commentDidChange:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setObject:self.commentTextField.stringValue forKey:kQLFormatStringCommentValueKey];
     [self updatePreviewText];
 }
 
 - (IBAction)onTableNameChanged:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setObject:self.tableNameTextField.stringValue forKey:kQLFormatStringTableNameValueKey];
     [self updatePreviewText];
 }
 
 - (IBAction)onBunldeNameChanged:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setObject:self.bunldeTextField.stringValue forKey:kQLFormatStringBundleValueKey];
     [self updatePreviewText];
 }
 
@@ -72,6 +98,7 @@ NSUInteger QL_CountOccurentOfStringWithSubString(NSString *str, NSString *subStr
 }
 
 - (IBAction)onValueTextField:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setObject:self.valueTextField.stringValue forKey:kQLFormatStringValueValueKey];
     [self updatePreviewText];
 }
 

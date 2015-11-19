@@ -9,7 +9,8 @@
 #import "QuickLocalization.h"
 #import "RCXcode.h"
 #import "OLSettingController.h"
-#import "AMMenuGenerator.h"
+#import "QLMenuGenerator.h"
+#import "QLIDEHelper.h"
 
 static NSString *localizeRegexs[] = {
     @"NSLocalizedString\\s*\\(\\s*@\"(.*)\"\\s*,\\s*(.*)\\s*\\)",
@@ -74,42 +75,7 @@ static id sharedPlugin = nil;
 }
 
 - (void)createMenuItem {
-    [AMMenuGenerator generateMenuItems:self.bundle version:[self getBundleVersion] target:self];
-    //    return;
-    //    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-    //        NSMenuItem *viewMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
-    //        if (viewMenuItem) {
-    //            [[viewMenuItem submenu] addItem:[NSMenuItem separatorItem]];
-    //            
-    //            NSMenuItem *localization = [[NSMenuItem alloc] initWithTitle:@"Quick Localization" action:@selector(quickLocalization:) keyEquivalent:@"d"];
-    //            [localization setKeyEquivalentModifierMask:NSShiftKeyMask | NSAlternateKeyMask];
-    //            [localization setTarget:self];
-    //            [localization setTag:0];
-    //            
-    //            NSMenuItem *shouldUseStringFromTableInBundleToggle = [[NSMenuItem alloc] initWithTitle:@"NSLocalizedStringFromTableInBundle" action:@selector(toggleStringFromTableInBundle) keyEquivalent:@""];
-    //            [shouldUseStringFromTableInBundleToggle setTarget:self];
-    //            
-    //            NSMenuItem *nilToggle = [[NSMenuItem alloc] initWithTitle:@"Use nil for NSLocalizedString comment" action:@selector(toggleNilOption) keyEquivalent:@""];
-    //            [nilToggle setTarget:self];
-    //            
-    //            NSMenuItem *snippetToggle = [[NSMenuItem alloc] initWithTitle:@"Use <# comments #> for NSLocalizedString comment" action:@selector(toggleSnippetOption) keyEquivalent:@""];
-    //            [snippetToggle setTarget:self];
-    //            
-    //            NSMenuItem *swiftSyntax = [[NSMenuItem alloc] initWithTitle:@"Swift Localization" action:@selector(toggleSwiftOption) keyEquivalent:@""];
-    //            [swiftSyntax setTarget:self];
-    //            
-    //            NSMenu *groupMenu = [[NSMenu alloc] initWithTitle:@"Quick Localization"];
-    //            [groupMenu addItem:localization];
-    //            [groupMenu addItem:nilToggle];
-    //            [groupMenu addItem:snippetToggle];
-    //            [groupMenu addItem:swiftSyntax];
-    //            [groupMenu addItem:shouldUseStringFromTableInBundleToggle];
-    //            
-    //            NSMenuItem *groupMenuItem = [[NSMenuItem alloc] initWithTitle:@"Quick Localization" action:NULL keyEquivalent:@""];
-    //            [[viewMenuItem submenu] addItem:groupMenuItem];
-    //            [[viewMenuItem submenu] setSubmenu:groupMenu forItem:groupMenuItem];
-    //        }
-    //    }];
+    [QLMenuGenerator generateMenuItems:self.bundle version:[self getBundleVersion] target:self];
 }
 
 // Sample Action, for menu item:
@@ -120,56 +86,68 @@ static id sharedPlugin = nil;
         return;
     }
     
-    //    NSLog(@"file: %@", [RCXcode currentWorkspaceDocument].workspace.representingFilePath.fileURL.absoluteString);
     NSArray *selectedRanges = [textView selectedRanges];
     if ([selectedRanges count] > 0) {
         NSRange range = [[selectedRanges objectAtIndex:0] rangeValue];
-        NSRange lineRange = [textView.textStorage.string lineRangeForRange:range];
-        NSString *line = [textView.textStorage.string substringWithRange:lineRange];
-        
-        
-        
-        NSRegularExpression *localizedRex = [[NSRegularExpression alloc] initWithPattern:localizeRegexs[0] options:NSRegularExpressionCaseInsensitive error:nil];
-        NSArray *localizedMatches = [localizedRex matchesInString:line options:0 range:NSMakeRange(0, [line length])];
-        
-        NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:[self currentStringRegexs] options:NSRegularExpressionCaseInsensitive error:nil];
-        NSArray *matches = [regex matchesInString:line options:0 range:NSMakeRange(0, [line length])];
-        NSUInteger addedLength = 0;
-        for (int i = 0; i < [matches count]; i++) {
-            NSTextCheckingResult *result = [matches objectAtIndex:i];
-            NSRange matchedRangeInLine = result.range;
-            NSRange matchedRangeInDocument = NSMakeRange(lineRange.location + matchedRangeInLine.location + addedLength, matchedRangeInLine.length);
-            if ([self isRange:matchedRangeInLine inSkipedRanges:localizedMatches]) {
-                continue;
-            }
-            NSString *string = [line substringWithRange:matchedRangeInLine];
-            //            NSLog(@"string index:%d, %@", i, string);
-            NSString *outputString;
-            
-            NSString *savedFormatString = [[NSUserDefaults standardUserDefaults] objectForKey:kQLFormatStringKey];
-            
-            NSUInteger placeHolderCount = QL_CountOccurentOfStringWithSubString(savedFormatString, @"%@");
-            if (placeHolderCount == 2) {
-                outputString = [NSString stringWithFormat:savedFormatString, string, string];
-            }
-            else if (placeHolderCount == 1) {
-                outputString = [NSString stringWithFormat:savedFormatString, string];
-            }
-            else {
-                outputString = [NSString stringWithFormat:@"placeholder incorrect, it is %@", savedFormatString];
-            }
-            
-            addedLength = addedLength + outputString.length - string.length;
-            if ([textView shouldChangeTextInRange:matchedRangeInDocument replacementString:outputString]) {
-                [textView.textStorage replaceCharactersInRange:matchedRangeInDocument
-                                          withAttributedString:[[NSAttributedString alloc] initWithString:outputString]];
-                [textView didChangeText];
-            }
-            
-            //            [textView replaceCharactersInRange:matchedRangeInDocument withString:outputString];
-            //            NSAlert *alert = [NSAlert alertWithMessageText:outputString defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
-            //            [alert runModal];
+        BOOL replaced = [self replaceTextInRange:range textView:textView];
+        //if user selected text is not being replaced, try using line replacing
+        if (!replaced) {
+            NSRange lineRange = [textView.textStorage.string lineRangeForRange:range];
+            [self replaceTextInRange:lineRange textView:textView];
         }
+    }
+}
+
+- (BOOL)replaceTextInRange:(NSRange)range textView:(NSTextView *)textView {
+    NSString *line = [textView.textStorage.string substringWithRange:range];
+    
+    NSRegularExpression *localizedRex = [[NSRegularExpression alloc] initWithPattern:localizeRegexs[0] options:NSRegularExpressionCaseInsensitive error:nil];
+    NSArray *localizedMatches = [localizedRex matchesInString:line options:0 range:NSMakeRange(0, [line length])];
+    
+    NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:[self currentStringRegexs] options:NSRegularExpressionCaseInsensitive error:nil];
+    NSArray *matches = [regex matchesInString:line options:0 range:NSMakeRange(0, [line length])];
+    NSUInteger addedLength = 0;
+    for (int i = 0; i < [matches count]; i++) {
+        NSTextCheckingResult *result = [matches objectAtIndex:i];
+        NSRange matchedRangeInLine = result.range;
+        NSRange matchedRangeInDocument = NSMakeRange(range.location + matchedRangeInLine.location + addedLength, matchedRangeInLine.length);
+        if ([self isRange:matchedRangeInLine inSkipedRanges:localizedMatches]) {
+            continue;
+        }
+        NSString *string = [line substringWithRange:matchedRangeInLine];
+        //            NSLog(@"string index:%d, %@", i, string);
+        NSString *outputString;
+        
+        NSString *savedFormatString = [[NSUserDefaults standardUserDefaults] objectForKey:kQLFormatStringKey];
+        
+        NSUInteger placeHolderCount = QL_CountOccurentOfStringWithSubString(savedFormatString, @"%@");
+        if (placeHolderCount == 2) {
+            outputString = [NSString stringWithFormat:savedFormatString, string, string];
+        }
+        else if (placeHolderCount == 1) {
+            outputString = [NSString stringWithFormat:savedFormatString, string];
+        }
+        else {
+            outputString = [NSString stringWithFormat:@"placeholder incorrect, format string is %@", savedFormatString];
+        }
+        
+        addedLength = addedLength + outputString.length - string.length;
+        if ([textView shouldChangeTextInRange:matchedRangeInDocument replacementString:outputString]) {
+            [textView.textStorage replaceCharactersInRange:matchedRangeInDocument
+                                      withAttributedString:[[NSAttributedString alloc] initWithString:outputString]];
+            [textView didChangeText];
+        }
+        
+        //            [textView replaceCharactersInRange:matchedRangeInDocument withString:outputString];
+        //            NSAlert *alert = [NSAlert alertWithMessageText:outputString defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
+        //            [alert runModal];
+    }
+    
+    if (matches.count) {
+        return YES;
+    }
+    else {
+        return NO;
     }
 }
 

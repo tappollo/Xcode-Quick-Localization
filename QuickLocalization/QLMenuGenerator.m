@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 Tendencystudio. All rights reserved.
 //
 
-#import "AMMenuGenerator.h"
+#import "QLMenuGenerator.h"
 #import "RCXcode.h"
 
-@implementation AMMenuGenerator
+@implementation QLMenuGenerator
 
 + (void)generateMenuItems:(NSBundle *)bundle version:(NSString *)version target:(id)target
 {
@@ -51,10 +51,10 @@
             NSMenuItem *subMenuItem = [[NSMenuItem alloc] initWithTitle:subMenuTitle action:selector keyEquivalent:keyEquivalent];
 
             if (maskArray.count == 1) {
-                subMenuItem.keyEquivalentModifierMask = [AMMenuGenerator getKeyEquivalentModifierMaskWithKey:maskArray[0]];
+                subMenuItem.keyEquivalentModifierMask = [QLMenuGenerator getKeyEquivalentModifierMaskWithKey:maskArray[0]];
             }else if(maskArray.count == 2) {
-                subMenuItem.keyEquivalentModifierMask = [AMMenuGenerator getKeyEquivalentModifierMaskWithKey:maskArray[0]] |
-                [AMMenuGenerator getKeyEquivalentModifierMaskWithKey:maskArray[1]];
+                subMenuItem.keyEquivalentModifierMask = [QLMenuGenerator getKeyEquivalentModifierMaskWithKey:maskArray[0]] |
+                [QLMenuGenerator getKeyEquivalentModifierMaskWithKey:maskArray[1]];
             }
             subMenuItem.target = target;
             [submenu addItem:subMenuItem];

@@ -9,13 +9,6 @@
 #import <Foundation/Foundation.h>
 
 
-extern NSString * const kDeclareMap;
-extern NSString * const kImplementMap;
-extern NSString * const kImplementContent;
-
-extern NSString * const kSelectTextType;
-extern NSString * const kSelectTextFirstSelectMethod;
-
 extern NSString * const kMenuRootMenuTitle;
 extern NSString * const kMenuPluginTitle;
 extern NSString * const kMenuSubMenuItems;
@@ -30,3 +23,9 @@ extern NSString * const kMenuActionTitle;
 extern NSString * const kQLFormatStringKey;
 extern NSString * const kQLFormatStringCommentSameKey;
 extern NSString * const kQLFormatStringSwiftSyntax;
+
+extern NSString * const kQLFormatStringCommentValueKey;
+extern NSString * const kQLFormatStringTableNameValueKey;
+extern NSString * const kQLFormatStringBundleValueKey;
+extern NSString * const kQLFormatStringValueValueKey;
+

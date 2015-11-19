@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0966970B1B5A20C200D29654 /* AMMenuGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0966970A1B5A20C200D29654 /* AMMenuGenerator.m */; };
+		0966970B1B5A20C200D29654 /* QLMenuGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0966970A1B5A20C200D29654 /* QLMenuGenerator.m */; };
 		0966970D1B5A20C900D29654 /* MenuItemData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0966970C1B5A20C900D29654 /* MenuItemData.plist */; };
-		096697101B5A214400D29654 /* AMConstString.m in Sources */ = {isa = PBXBuildFile; fileRef = 0966970F1B5A214400D29654 /* AMConstString.m */; };
+		096697101B5A214400D29654 /* QLConstString.m in Sources */ = {isa = PBXBuildFile; fileRef = 0966970F1B5A214400D29654 /* QLConstString.m */; };
+		098C633B1BFDB38E00A6398E /* QLIDEHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 098C633A1BFDB38E00A6398E /* QLIDEHelper.m */; };
+		098C633E1BFDB43100A6398E /* QLXcodeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 098C633D1BFDB43100A6398E /* QLXcodeHelper.m */; };
 		099474BA1B5A1F3000E39E3C /* OLSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 099474B81B5A1F3000E39E3C /* OLSettingController.m */; };
 		099474BB1B5A1F3000E39E3C /* OLSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 099474B91B5A1F3000E39E3C /* OLSettingController.xib */; };
 		09A343C6174068E600A713EE /* RCXcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A343C5174068E200A713EE /* RCXcode.m */; };
@@ -21,11 +23,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		096697091B5A20C200D29654 /* AMMenuGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMenuGenerator.h; sourceTree = "<group>"; };
-		0966970A1B5A20C200D29654 /* AMMenuGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMenuGenerator.m; sourceTree = "<group>"; };
+		096697091B5A20C200D29654 /* QLMenuGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QLMenuGenerator.h; sourceTree = "<group>"; };
+		0966970A1B5A20C200D29654 /* QLMenuGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QLMenuGenerator.m; sourceTree = "<group>"; };
 		0966970C1B5A20C900D29654 /* MenuItemData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuItemData.plist; sourceTree = "<group>"; };
-		0966970E1B5A214400D29654 /* AMConstString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMConstString.h; sourceTree = "<group>"; };
-		0966970F1B5A214400D29654 /* AMConstString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMConstString.m; sourceTree = "<group>"; };
+		0966970E1B5A214400D29654 /* QLConstString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QLConstString.h; sourceTree = "<group>"; };
+		0966970F1B5A214400D29654 /* QLConstString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QLConstString.m; sourceTree = "<group>"; };
+		098C63391BFDB38E00A6398E /* QLIDEHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QLIDEHelper.h; sourceTree = "<group>"; };
+		098C633A1BFDB38E00A6398E /* QLIDEHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QLIDEHelper.m; sourceTree = "<group>"; };
+		098C633C1BFDB43100A6398E /* QLXcodeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QLXcodeHelper.h; sourceTree = "<group>"; };
+		098C633D1BFDB43100A6398E /* QLXcodeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QLXcodeHelper.m; sourceTree = "<group>"; };
 		099474B71B5A1F3000E39E3C /* OLSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLSettingController.h; sourceTree = "<group>"; };
 		099474B81B5A1F3000E39E3C /* OLSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLSettingController.m; sourceTree = "<group>"; };
 		099474B91B5A1F3000E39E3C /* OLSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OLSettingController.xib; sourceTree = "<group>"; };
@@ -89,10 +95,14 @@
 				09A343C4174068E200A713EE /* RCXcode.h */,
 				09A343C5174068E200A713EE /* RCXcode.m */,
 				0966970C1B5A20C900D29654 /* MenuItemData.plist */,
-				0966970E1B5A214400D29654 /* AMConstString.h */,
-				0966970F1B5A214400D29654 /* AMConstString.m */,
-				096697091B5A20C200D29654 /* AMMenuGenerator.h */,
-				0966970A1B5A20C200D29654 /* AMMenuGenerator.m */,
+				0966970E1B5A214400D29654 /* QLConstString.h */,
+				0966970F1B5A214400D29654 /* QLConstString.m */,
+				098C633C1BFDB43100A6398E /* QLXcodeHelper.h */,
+				098C633D1BFDB43100A6398E /* QLXcodeHelper.m */,
+				098C63391BFDB38E00A6398E /* QLIDEHelper.h */,
+				098C633A1BFDB38E00A6398E /* QLIDEHelper.m */,
+				096697091B5A20C200D29654 /* QLMenuGenerator.h */,
+				0966970A1B5A20C200D29654 /* QLMenuGenerator.m */,
 				09F6563A174041010000486B /* Supporting Files */,
 				099474B71B5A1F3000E39E3C /* OLSettingController.h */,
 				099474B81B5A1F3000E39E3C /* OLSettingController.m */,
@@ -178,9 +188,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				09F65641174041010000486B /* QuickLocalization.m in Sources */,
-				096697101B5A214400D29654 /* AMConstString.m in Sources */,
+				096697101B5A214400D29654 /* QLConstString.m in Sources */,
+				098C633B1BFDB38E00A6398E /* QLIDEHelper.m in Sources */,
 				099474BA1B5A1F3000E39E3C /* OLSettingController.m in Sources */,
-				0966970B1B5A20C200D29654 /* AMMenuGenerator.m in Sources */,
+				098C633E1BFDB43100A6398E /* QLXcodeHelper.m in Sources */,
+				0966970B1B5A20C200D29654 /* QLMenuGenerator.m in Sources */,
 				09A343C6174068E600A713EE /* RCXcode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

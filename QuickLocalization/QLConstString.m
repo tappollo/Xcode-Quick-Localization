@@ -6,15 +6,8 @@
 //  Copyright (c) 2015年 Tendencystudio. All rights reserved.
 //
 
-#import "AMConstString.h"
+#import "QLConstString.h"
 
-
-NSString * const kDeclareMap = @"declareMap";
-NSString * const kImplementMap = @"implementMap";
-NSString * const kImplementContent = @"implementContent";
-
-NSString * const kSelectTextType = @"type";
-NSString * const kSelectTextFirstSelectMethod = @"firstSelectMethod";
 
 NSString * const kMenuRootMenuTitle = @"rootMenuTitle";
 NSString * const kMenuPluginTitle = @"pluginTitle";
@@ -30,3 +23,10 @@ NSString * const kMenuActionTitle = @"Implement Mehod";
 NSString * const kQLFormatStringKey = @"KQLFormatStringKey";
 NSString * const kQLFormatStringCommentSameKey = @"KQLFormatStringKey";
 NSString * const kQLFormatStringSwiftSyntax = @"kQLFormatStringSwiftSyntax";
+
+
+
+NSString * const kQLFormatStringCommentValueKey = @"kQLFormatStringCommentValueKey";
+NSString * const kQLFormatStringTableNameValueKey = @"kQLFormatStringTableNameValueKey";
+NSString * const kQLFormatStringBundleValueKey = @"kQLFormatStringBundleValueKey";
+NSString * const kQLFormatStringValueValueKey = @"kQLFormatStringValueValueKey";
