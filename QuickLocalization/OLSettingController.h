@@ -11,4 +11,5 @@ extern NSUInteger QL_CountOccurentOfStringWithSubString(NSString *str, NSString 
 
 @interface OLSettingController : NSWindowController
 @property (nonatomic, weak) NSBundle *bundle;
++ (void)registerFormatStringDefaults;
 @end

@@ -162,4 +162,8 @@ NSUInteger QL_CountOccurentOfStringWithSubString(NSString *str, NSString *subStr
     
     return savedFormatString;
 }
+
++ (void)registerFormatStringDefaults {
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{kQLFormatStringKey: @"NSLocalizedString(%@, %@)"}];
+}
 @end

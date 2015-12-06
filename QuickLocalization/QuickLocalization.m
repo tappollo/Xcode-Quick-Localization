@@ -72,6 +72,7 @@ static id sharedPlugin = nil;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
     [self createMenuItem];
+    [OLSettingController registerFormatStringDefaults];
 }
 
 - (void)createMenuItem {
